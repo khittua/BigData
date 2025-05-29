@@ -1,7 +1,114 @@
 ---
 layout: default
-title: Bienvenido
+title: Informe Técnico
 ---
 
-# Informe Big Data Avistamientos
-Este es mi sitio con Jekyll y GitHub Pages.
+<h1>Informe de Actividad Práctica: Avistamientos OVNI</h1>
+
+<p><strong>Autores:</strong> [Mauricio Carrillo] [Alan Concha] </p>
+
+<hr>
+
+<h2>1. Introducción</h2>
+<p>
+  En esta actividad práctica se utilizó el laboratorio GSP823 de Google Cloud para desarrollar un flujo completo de trabajo en Big Data. El objetivo fue cargar, limpiar, analizar y visualizar un conjunto de datos sobre avistamientos de objetos voladores no identificados (OVNIs).
+</p>
+
+<h2>2. Pasos Realizados</h2>
+
+<h3>2.1 Carga de Datos</h3>
+<ul>
+  <li>Se creó un Bucket en Cloud Storage llamado <code>nombre-alumno</code>.</li>
+  <li>Se cargó el archivo <code>.csv</code> de avistamientos al bucket creado.</li>
+</ul>
+
+<h3>2.2 Creación del Dataset</h3>
+<ul>
+  <li>Se creó un Dataset llamado <strong>ovni</strong> en BigQuery.</li>
+</ul>
+
+<h3>2.3 Preparación de los Datos con DataPrep</h3>
+<p>Las siguientes transformaciones se realizaron para asegurar la calidad de los datos:</p>
+<ol>
+  <li>Convertir el campo <code>state/province</code> a tipo <strong>String</strong>.</li>
+  <li>Reemplazar valores nulos en <code>state/province</code> por <strong>"No se encontró Provincia"</strong>.</li>
+  <li>Reemplazar valores nulos en <code>country</code> por <strong>"No se encontró País"</strong>.</li>
+  <li>Reemplazar valores nulos en <code>UFO_shape</code> por <strong>"No se encontró forma"</strong>.</li>
+  <li>Eliminar filas donde el campo <code>length_of_encounter_seconds</code> esté vacío.</li>
+  <li>Reemplazar valores nulos en <code>description</code> por <strong>"Sin descripción"</strong>.</li>
+  <li>Eliminar filas donde <code>latitude</code> esté vacío.</li>
+  <li>Renombrar <code>state/province</code> a <code>state province</code>.</li>
+  <li>Cambiar el formato de fecha del campo <code>Date_time</code> a <code>yyyy-MM-dd hh:mm:ssa</code>.</li>
+</ol>
+
+<h3>2.4 Carga a BigQuery</h3>
+<p>
+  Se cargó el archivo procesado desde DataPrep a la tabla <strong>avistamientos</strong> dentro del dataset <strong>ovni</strong>.
+</p>
+
+<h2>3. Visualización de Datos con Looker Studio</h2>
+<p>Se crearon los siguientes gráficos a partir de las consultas hechas en BigQuery:</p>
+
+<h3>3.1 Formas de OVNI Más Vistas</h3>
+<p>
+  Se utilizó un gráfico de <strong>torta</strong> para representar las cinco formas más vistas de OVNIs en Estados Unidos.
+</p>
+<pre><code>
+SELECT
+  UFO_shape,
+  COUNT(*) AS Sightings
+FROM
+  `ufo_dataset.ufo_sightings`
+WHERE
+  country = 'us'
+GROUP BY
+  UFO_shape
+ORDER BY
+  Sightings DESC
+LIMIT 5;
+</code></pre>
+
+<h3>3.2 Avistamientos por Año</h3>
+<p>
+  Se representaron en un <strong>gráfico de barras</strong> los avistamientos por año en Estados Unidos, ordenados por cantidad.
+</p>
+<pre><code>
+SELECT
+  EXTRACT(YEAR FROM DATETIME(Date_time)) AS Year,
+  COUNT(*) AS Sightings
+FROM
+  `ufo_dataset.ufo_sightings`
+WHERE
+  country = 'us'
+GROUP BY
+  Year
+ORDER BY
+  Sightings DESC;
+</code></pre>
+
+<h3>3.3 Avistamientos por Estado</h3>
+<p>
+  Se utilizó un <strong>mapa</strong> para visualizar los avistamientos por estado dentro de EE.UU.
+</p>
+<pre><code>
+SELECT
+  `state/province` AS State,
+  COUNT(*) AS Sightings
+FROM
+  `ufo_dataset.ufo_sightings`
+WHERE
+  country = 'us'
+GROUP BY
+  State
+ORDER BY
+  Sightings DESC;
+</code></pre>
+
+<h2>4. Conclusión</h2>
+<p>
+  La actividad permitió poner en práctica herramientas clave del ecosistema de Google Cloud como Cloud Storage, DataPrep, BigQuery y Looker Studio. A través de la limpieza de datos, análisis y visualización, se logró obtener una visión clara de los patrones de avistamientos de OVNIs en Estados Unidos.
+</p>
+
+<hr>
+
+<p><em>Fin del informe.</em></p>
