@@ -1,3 +1,7 @@
-# Informe Big Data Avistamientos
+---
+layout: default
+title: Bienvenido
+---
 
-holahola
+# Informe Big Data Avistamientos
+Este es mi sitio con Jekyll y GitHub Pages.
