@@ -53,7 +53,7 @@ title: Informe Técnico
 <p>
   Se utilizó un gráfico de <strong>torta</strong> para representar las cinco formas más vistas de OVNIs en Estados Unidos.
 </p>
-<img src="/assets/img/graficos_formas.png" alt="Gráfico de formas de OVNI" style="max-width: 100%; height: auto;">
+<img src="{{ site.baseurl }}/assets/img/graficos_formas.png" alt="Gráfico de formas de OVNI" style="max-width: 100%; height: auto;">
 <pre><code>
 SELECT
   UFO_shape,
@@ -73,7 +73,7 @@ LIMIT 5;
 <p>
   Se representaron en un <strong>gráfico de barras</strong> los avistamientos por año en Estados Unidos, ordenados por cantidad.
 </p>
-<img src="/assets/img/graficos_años.png" alt="Gráfico de avistamientos por año" style="max-width: 100%; height: auto;">
+<img src="{{ site.baseurl }}/assets/img/graficos_años.png" alt="Gráfico de avistamientos por año" style="max-width: 100%; height: auto;">
 <pre><code>
 SELECT
   EXTRACT(YEAR FROM DATETIME(Date_time)) AS Year,
@@ -92,7 +92,7 @@ ORDER BY
 <p>
   Se utilizó un <strong>mapa</strong> para visualizar los avistamientos por estado dentro de EE.UU.
 </p>
-<img src="/assets/img/graficos_estados.png" alt="Gráfico de avistamientos por estado" style="max-width: 100%; height: auto;">
+<img src="{{ site.baseurl }}/assets/img/graficos_estados.png" alt="Gráfico de avistamientos por estado" style="max-width: 100%; height: auto;">
 <pre><code>
 SELECT
   `state/province` AS State,
