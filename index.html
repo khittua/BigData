@@ -21,11 +21,13 @@ title: Avistamientos OVNI
   <li>Se creó un Bucket en Cloud Storage llamado <code>alan-concha-vera</code>.</li>
   <li>Se cargó el archivo <code>.csv</code> de avistamientos al bucket creado.</li>
 </ul>
+<img src="{{ site.baseurl }}/assets/img/creacion_bucket.png" alt="Creacion Bucket" style="max-width: 100%; height: auto;">
 
 <h3>2.2 Creación del Dataset</h3>
 <ul>
   <li>Se creó un Dataset llamado <strong>ovni</strong> en BigQuery.</li>
 </ul>
+<img src="{{ site.baseurl }}/assets/img/creacion_dataset.png" alt="Creacion Dataset" style="max-width: 100%; height: auto;">
 
 <h3>2.3 Preparación de los Datos con DataPrep</h3>
 <p>Las siguientes transformaciones se realizaron para asegurar la calidad de los datos:</p>
@@ -45,6 +47,7 @@ title: Avistamientos OVNI
 <p>
   Se cargó el archivo procesado desde DataPrep a la tabla <strong>avistamientos</strong> dentro del dataset <strong>ovni</strong>.
 </p>
+<img src="{{ site.baseurl }}/assets/img/creacion_tabla.png" alt="Creacion Tabla" style="max-width: 100%; height: auto;">
 
 <h2>3. Visualización de Datos con Looker Studio</h2>
 <p>Se crearon los siguientes gráficos a partir de las consultas hechas en BigQuery:</p>
